@@ -1,0 +1,19 @@
+class Solution:
+    def increasingTriplet(self, nums):
+        base = potential_triplet = max(nums)
+
+        for n in nums:
+            if n <= base:
+                base = n
+            elif n <= potential_triplet:
+                potential_triplet = n
+            else:
+                return True
+        
+        return False
+
+# The important distinction in the second solution is that "first" and "second" are not necessarily an ordered pair: "first" can appear after "second" in the array.
+# The trick is that having "second" implies there exists some smaller number we had previously visited.
+
+# if first and second are ordered pair, than it is clear why solution is right.
+# if they area not an ordered pair, some number smaller than second exists and the num is greater than second.
