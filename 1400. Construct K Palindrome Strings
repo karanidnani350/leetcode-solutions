@@ -1,0 +1,36 @@
+class Solution:
+    def canConstruct(self, s: str, k: int) -> bool:
+        # Case: If all characters are distinct, and count = k, then return true
+        # Case: For a palindrome, all the characters count should be multiple of 2 or (multiple of 2 and at least one odd)
+
+        # you need to create exact number of palindromes, that's what k means
+        
+        # Below is rough work
+        # annabelle -> aa ee ll nn b -> aa ee ll nn b
+        # leetcode  -> c d eee l o t -> 6 6 3
+
+        no_of_palindrome = 0
+        odd_count = 0
+        even_count = 0
+        unique_characters = list(set(s))
+        if len(unique_characters) == k:
+            return True
+        
+        for i in range(len(unique_characters)):
+            if s.count(unique_characters[i]) % 2 == 0 or s.count(unique_characters[i]) % 2 == 1:
+                no_of_palindrome += 1
+        
+        for i in range(len(unique_characters)):
+            if s.count(unique_characters[i]) % 2 == 1:
+                odd_count += 1
+
+        print(len(unique_characters))
+        print(no_of_palindrome)
+        print(sorted(s))
+        # 6 5 
+        # distinct_palindrome / 2 == 4
+        if odd_count <= k and k <= len(s):
+            return True
+        
+        else:
+            return False
