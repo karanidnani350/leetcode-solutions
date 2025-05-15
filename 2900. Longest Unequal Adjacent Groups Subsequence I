@@ -1,0 +1,19 @@
+class Solution:
+    def getLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
+        # Step 1: Create an index array and loop over groups from 1, len(groups) - 1
+        # Step 2: By default, have the first element in index array and compare current with previous one
+        # Step 3: If not same, then add that index to index array and move on otherwise move on
+        # Step 4: Replace index array elements with elements from words using index
+
+        index_array = [words[0]]
+        for i in range(1, len(groups)):
+            print("inside for loop")
+            if groups[i] != groups[i-1]:
+                index_array.append(words[i])
+            else:
+                continue
+        
+        return index_array
+
+        # Time complexity: O(n)
+        # Space complexity: O(n)
