@@ -1,0 +1,56 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        
+        
+        # Input: nums = [2,20,4,10,3,4,5]
+        # [2, 3, 4, 5, 10, 20]
+
+
+        # Clarifying question: Length shouldn't account for duplicate elements.
+        
+        # Step 1: Initialize an integer that will store the max count and sort
+
+        # Step 2: Start with smallest element and check if the next element
+        #  with diff = 1 exists
+        # Keep updating the counter
+
+        # Step 3: If 2 fails, then find the second smallest element in the array
+
+        # temp_count = 1
+        # actual_count = [] 
+        
+        # nums = list(set(nums))
+        # nums.sort() # O(n logn)
+
+        # for i in nums:
+        #     if i + 1 in nums:
+        #         temp_count += 1
+        #     else:
+        #         actual_count.append(temp_count)
+        #         temp_count = 1
+            
+        # return max(actual_count) if len(nums) != 0 else 0
+        # if actual_count < temp_count:
+        #     actual_count = temp_count
+        # Learning: set doesn't maintain the order
+
+# --------------------------------------------------------------------------------
+
+        # optimized approach
+
+        
+        actual_count = []
+
+        nums_set = set(nums)
+
+        for i in nums_set: # O(n)
+            if (i-1) not in nums_set: # O(1)
+                temp_count = 1
+                while i + temp_count in nums_set:
+                    temp_count += 1
+                actual_count.append(temp_count)
+        
+        return max(actual_count) if len(nums) != 0 else 0
+
+        # Time complexity: O(n)
+        # Space complexity: O(n)
