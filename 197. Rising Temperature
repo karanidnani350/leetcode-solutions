@@ -1,0 +1,18 @@
+# Write your MySQL query statement below
+
+-- basically we need to compare values in the same table
+
+-- question: are the records ordered by date?
+-- the above question doesn't matter since we only need to compare with the previous date
+
+select w1.id from weather w1 join weather w2 on 
+datediff(w1.recorddate, w2.recorddate)=1
+where w1.temperature > w2.temperature;
+
+-- select w1.id, w1.temperature w1t, w2.temperature w2t from weather w1 join weather w2 on datediff(w2.recorddate, w1.recorddate)=1
+-- where w1.temperature < w2.temperature;
+
+-- 2, 3, 4 if datediff(w1.recorddate, w2.recorddate)
+-- 1, 2, 3 if datediff(w2.recorddate, w1.recorddate)
+
+-- ()
