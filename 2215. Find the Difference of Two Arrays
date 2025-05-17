@@ -1,0 +1,22 @@
+class Solution:
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        
+        nums1_set = set(nums1)
+        nums2_set = set(nums2)
+
+        print(nums1_set)
+        print(nums2_set)
+        
+        diff1 = [] # O(n) in worst case
+        diff2 = [] # O(n) in worst case
+
+        for i in nums1_set: # O(n)
+            if i not in nums2_set: # O(1)
+                diff1.append(i) # ask GPT
+        for i in nums2_set:
+            if i not in nums1_set:
+                diff2.append(i)
+        return [diff1, diff2]
+
+        # Time complexity: O(n+m)
+        # Space complexity: O(n+m)
