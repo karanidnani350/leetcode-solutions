@@ -1,0 +1,85 @@
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # One pass algorithm -> Single loop?
+        # Constant extra space -> It means O(1), but will confirm at the end.
+        # [2, 0, 2, 1, 1, 0]
+        # Thought: Two pointer?
+
+        # [0, 2, 2, 1, 1, 0]
+        # No swap
+        # No swap
+        # [0, 2, 1, 2, 1, 0]
+        # [0, 2, 1, 1, 2, 0]
+        # [0, 2, 1, 1, 0, 2]
+        # [0, 1, 2, 1, 0, 2]
+        # [0, 1, 1, 2, 0, 2]
+
+        # Don't know the number of iterations so maybe while loop
+        # i = 0
+        # j = 1
+        # while nums != sorted(nums): # O(1)
+        #     if nums[i] > nums[j] and j != len(nums): # O()
+        #         temp = nums[i]
+        #         nums[i] = nums[j]
+        #         nums[j] = temp
+        #         i+=1
+        #         j+=1
+        #     else:
+        #         i = 0
+        #         j = 1
+        
+        # return nums
+
+        # Time complexity: 
+        # Space complexity: O(1)
+
+        # low < high
+        # med < high
+        low = 0
+        mid = 0
+        high = len(nums) - 1
+
+        # while low < high:
+        #     if nums[low] == 0:
+        #         low += 1
+        #     elif nums[low] == 1:
+        #         nums[low], nums[mid] = nums[mid], nums[low]
+        #         low += 1
+        #         mid += 1
+        #     else:
+        #         nums[low], nums[high] = nums[high], nums[low]
+        #         low += 1
+        #         high -=1
+        
+        # print(nums)
+
+        # [2, 0, 1]
+        # [1, 0, 2]
+        # [0, 1, 2]
+
+        # why low < high doesn't work?
+        # low is responsible for 0's, mid for 1's, and high for 2's
+        # if I play with low, high, and assume their values are 2, 1 or 1, 2, it essentially
+        # means I am leaving 0 in between, which is incorrect.
+
+        # why mid works, it's like a pull push method. If mid is 0, I pull from left and push to mid and vice versa
+
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            else:
+                nums[mid], nums[high] = nums[high], nums[mid]
+                # mid += 1
+                high -=1
+        
+        # in above, you see mid += 1 in else block, initially that was there but it's incorrect
+        # if it is low and 0, well and good move on (low+=1, mid+=1)
+        # if it is mid and 1, well and good move on (mid+=1)
+        # if it is high and 2, well and good move back (DO NOT TOUCH MID. Previous mistake)
