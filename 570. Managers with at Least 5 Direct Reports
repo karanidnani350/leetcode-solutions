@@ -1,0 +1,10 @@
+# Write your MySQL query statement below
+
+
+-- select name, countmgr from (select id, count(managerid) countmgr from employee group by managerid) subtable where countmgr>=5;
+
+-- select e.name from employee e from employee 
+-- (select managerid from employee group by managerid where countmgr>=5) count_mgr;
+
+
+select name from employee where id in (select managerid from employee group by managerid having count(managerid)>=5);
