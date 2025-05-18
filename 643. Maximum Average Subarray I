@@ -1,0 +1,29 @@
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        # contiguous subarray is array with consecutive elements
+
+
+        # temp_sum = 0
+        # final_sum = -99999999
+        # sum_array = []
+        # brute force is to run a loop for k times until n-4
+
+        
+        # for i in range(len(nums) - k + 1): # 3
+        #     temp_sum = 0
+        #     for j in range(k): # 4
+        #         temp_sum += nums[i+j]
+                
+        #     sum_array.append(temp_sum/k)
+        
+        # return max(sum_array)
+        window_sum = 0
+        window_sum += sum(nums[:k])
+        max_avg = window_sum
+        
+
+        for i in range(k, len(nums)):
+            window_sum += nums[i] - nums[i - k]
+            max_avg = max(max_avg, window_sum)
+        
+        return max_avg / k
