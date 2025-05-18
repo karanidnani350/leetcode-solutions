@@ -1,0 +1,9 @@
+# Write your MySQL query statement below
+-- select total_cnf.user_id, count(cnf.action) / total_cnf.cnt_user_id confirmation_rate from
+-- (select user_id, count(user_id) cnt_user_id from confirmations group by user_id) total_cnf
+-- left join confirmations cnf on total_cnf.user_id = cnf.user_id and cnf.action='confirmed' group by cnf.action, cnf.user_id;
+
+
+select sgn.user_id, round(ifnull(count(case when cnf.action = 'confirmed' then 1 end) / count(cnf.user_id),0),2) confirmation_rate from signups sgn
+left join confirmations cnf on sgn.user_id = cnf.user_id
+group by sgn.user_id;
