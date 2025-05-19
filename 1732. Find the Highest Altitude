@@ -1,0 +1,18 @@
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        alt = float('-inf')
+        net = 0
+        for i in gain:
+            net += i
+            alt = max(0, alt, net)
+
+        return alt
+
+        # net, alt
+        # -4, -4
+        # -7, -4
+        # -9, -4
+        # -10, -4
+        # -6, -4
+        # -3, -3
+        # -1, -1
