@@ -1,0 +1,28 @@
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        
+        # Brute Force approach
+        # map_arr = {val: arr.count(val) for key, val in enumerate(arr)}
+
+        # set_arr = set()
+        # for val in map_arr.values():
+        #     if val in set_arr:
+        #         return False
+        #     set_arr.add(val)
+        # return True
+        
+
+        # map_arr = {val: arr.count(val) for key, val in enumerate(arr)}
+
+        map_arr = {}
+        for val in arr:
+            print(map_arr.get(val))
+            map_arr[val] = map_arr.get(val, 0) + 1
+            # get function is commonly used to retrieve the count of an element
+
+        set_arr = set()
+        for val in map_arr.values():
+            if val in set_arr:
+                return False
+            set_arr.add(val)
+        return True
