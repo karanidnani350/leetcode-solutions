@@ -1,0 +1,14 @@
+# Write your MySQL query statement below
+
+-- product_id, dates, units, price, units*price
+
+select p.product_id, round(coalesce(sum(p.price*u.units)/sum(u.units), 0),2) average_price from prices p
+left join unitssold u on p.product_id = u.product_id and purchase_date between p.start_date and p.end_date
+group by p.product_id;
+
+-- Complexity. Assume u is units, p is products
+-- O(u * p) for the left join
+-- O(u * p) for the between function
+-- group by is (plogp)
+
+-- O(u * p) + O(plogp)
