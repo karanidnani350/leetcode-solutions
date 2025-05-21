@@ -1,0 +1,40 @@
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        # cabbba
+        # caccba
+        # aaccbc
+        # bbccac
+        # abccbc
+        # abbccc
+
+        # aab (2, 1)
+        # bbb (3)
+
+        # len of both the strings should be equal
+        # i don't need to know how will I form the string or what steps would it take to form it, I just need to know whether I can do it or not. even the sequence doesn't matter
+        # what if I create two hashmaps of each string with count of each character and check if the count of characters match along with individual characters exists in both the words. for example, aab and bba.
+
+        check = 1
+        if len(word1) != len(word2):
+            return False
+        
+        word1_map = {key: word1.count(key) for key in set(word1)}
+        word2_map = {key: word2.count(key) for key in set(word2)}
+
+        for key in word1_map.keys():
+            if key in word2_map.keys():
+                continue
+            else:
+                return False
+        if sorted(word1_map.values()) != sorted(word2_map.values()):
+            return False
+        
+        # (2, 2, 3, 4, 5, 5) 21
+        # (2, 3, 3, 4, 4, 5) 21
+
+        return True
+        # for i in range(len(word1)):
+        #     print(word1[i])
+
+        # aabbzzc (2, 2, 2, 1)
+        # bbzzzac (2, 3, 1, 1)
