@@ -1,0 +1,11 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        # thought
+        # convert to list
+        # reverse the list
+        # join the list
+        s_list = s.split()
+        s_list.reverse() #O(w) where w is number of words
+        return " ".join(s_list)
+
+        # Overall O(N), O(N)
